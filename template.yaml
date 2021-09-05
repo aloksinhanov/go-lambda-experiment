@@ -1,0 +1,21 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+
+  Mapper:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./mapper/template.yaml
+
+  Transform:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location: ./transformer/template.yaml
+
+Outputs:
+
+  Endpoint:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
